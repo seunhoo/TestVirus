@@ -14,12 +14,12 @@ void Line::Update(float deltatime, float time)
 	if (m_Tag != "UpLine" && m_Tag != "DownLine")
 	{
 		ObjMgr->CollisionCheak(this, "UpLine");
-		ObjMgr->CollisionCheak(this, "DownLine");
+		//ObjMgr->CollisionCheak(this, "DownLine");
 	}
 	else if (m_Tag != "LeftLine" && m_Tag != "RightLine")
 	{
-		ObjMgr->CollisionCheak(this, "LeftLine");
-		ObjMgr->CollisionCheak(this, "RightLine");
+		//ObjMgr->CollisionCheak(this, "LeftLine");
+		//ObjMgr->CollisionCheak(this, "RightLine");
 	}
 	MakeSquare::GetInst()->Sort();
 }
