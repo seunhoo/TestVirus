@@ -64,7 +64,6 @@ void MakeSquare::Square()
 		float x = (m_ArrPos[0].x + m_ArrPos[i - 1].x) / 2;
 		float y = (m_ArrPos[0].y + m_ArrPos[i - 1].y) / 2;
 		
-		printf("!@3123123");
 		ObjMgr->AddObject(new Regeneration(x, y, m_ArrPos[0], m_ArrPos[i - 1]), "Reg");
 		i = 0;
 		m_Count = 0;
