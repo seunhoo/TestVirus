@@ -2,6 +2,9 @@
 class MainScene : public Scene
 {
 public:
+
+	Sprite* m_BackGround;
+
 	MainScene();
 	~MainScene();
 

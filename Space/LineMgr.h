@@ -1,5 +1,5 @@
 #pragma once
-class LineMgr
+class LineMgr : public Singleton<LineMgr>
 {
     LPD3DXLINE m_pLine;
     D3DXCOLOR m_Color;
