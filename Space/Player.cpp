@@ -9,10 +9,11 @@ Player::Player()
 	,m_Length(0)
 	,i(0)
 {
+	srand(time(NULL));
 	m_Player = Sprite::Create(L"Painting/Player.png");
 	m_Player->SetParent(this);
-	int randomx = rand() % 2 + 1;
-	int randomy = rand() % 2  + 1;
+	int randomx = (rand() % 2) + 1;
+	int randomy = (rand() % 2) + 1;
 	int randomX = 0, randomY = 0;
 
 	if (randomx == 1)
@@ -45,7 +46,6 @@ Player::Player()
 	{
 		randomX = 0;
 		randomY = rand() % 1080 + 0;
-		randomY = rand() % 1080 + 0;
 
 		if (randomY % 10 != 0)
 		{
@@ -53,7 +53,7 @@ Player::Player()
 			{
 				randomY--;
 			}
-		}
+		}	
 	}
 	else if(randomy == 2)
 	{
@@ -72,8 +72,8 @@ Player::Player()
 	}
 	printf("%d %d %d %d \n", randomx, randomy, randomX, randomY);
 	m_Layer = 100;
-	//SetPosition(randomX, randomY);
-	SetPosition(randomX, randomY);
+
+	SetPosition(1920/2, 0);
 
 	m_Line = new LineMgr();
 	m_Line->Init(3, 1);
@@ -88,12 +88,7 @@ Player::Player()
 
 void Player::Update(float deltatime, float time)
 {
-	//printf("天天天天天天天天天天天天天天天天天天\n");
-	//printf("%f %f \n", m_PlayerPos[0].x, m_PlayerPos[0].y);
-	//printf("%f %f \n", m_PlayerPos[1].x, m_PlayerPos[1].y);
-	//printf("%f %f \n", m_PlayerPos[2].x, m_PlayerPos[2].y);
-	//printf("%f %f \n", m_PlayerPos[3].x, m_PlayerPos[3].y);
-	//printf("天天天天天天天天天天天天天天天天天天\n");
+
 
 
 
@@ -103,7 +98,6 @@ void Player::Update(float deltatime, float time)
 		if (m_State != MoveState::UP && m_State != MoveState::DOWN)
 		{
 			m_PlayerPos[i] = m_Position;
-			//m_CurPos[i] = m_Position;
 			m_Length++;
 			m_Move = 1;
 			m_State = MoveState::UP;
@@ -122,7 +116,6 @@ void Player::Update(float deltatime, float time)
 		if (m_State != MoveState::UP && m_State != MoveState::DOWN)
 		{
 			m_PlayerPos[i] = m_Position;
-			//m_CurPos[i] = m_Position;
 			m_Length++;
 			m_Move = 2;
 
@@ -143,7 +136,6 @@ void Player::Update(float deltatime, float time)
 		if (m_State != MoveState::RIGHT && m_State != MoveState::LEFT)
 		{
 			m_PlayerPos[i] = m_Position;
-			//m_CurPos[i] = m_Position;
 			m_Length++;
 			m_Move = 3;
 
@@ -163,7 +155,6 @@ void Player::Update(float deltatime, float time)
 		if (m_State != MoveState::RIGHT && m_State != MoveState::LEFT)
 		{
 			m_PlayerPos[i] = m_Position;
-			//m_CurPos[i] = m_Position;
 			m_Length++;
 			m_Move = 4;
 
@@ -205,33 +196,22 @@ void Player::Update(float deltatime, float time)
 		int x8 = m_PlayerPos[3].x > m_PlayerPos[4].x ? m_PlayerPos[3].x : m_PlayerPos[4].x;
 		int y8 = m_PlayerPos[3].y > m_PlayerPos[4].y ? m_PlayerPos[3].y : m_PlayerPos[4].y;
 
-
-		printf("%f %f \n", m_Position.x, m_Position.y);
-
-		printf("\n %d %d %d %d %d %d %d %d \n",x1,x2,x3,x4,x5,x6,x7,x8 );
-		printf("\n %d %d %d %d %d %d %d %d \n",y1,y2,y3,y4,y5,y6,y7,y8 );
-
-		printf("%f \n", dist);
-		printf("%f \n", disk);
-		printf("%f \n", disc);
-		printf("%f \n", didr);
-
 		if (dist < 10 && m_Position.x >= x1 - 10 && m_Position.x <= x2 + 10 && m_Position.y >= y1 - 10 && m_Position.y <= y2 + 10)
 		{
 			m_PlayerPos[0] = m_PlayerPos[4];
 			m_Square = true;
 		}
-		else if (disc < 10 && m_Position.x >= x3 - 10 && m_Position.x <= x4 + 10 && m_Position.y >= y3 - 10 && m_Position.y <= y4 + 10)
+		else if (disc < 5 && m_Position.x >= x3 - 5 && m_Position.x <= x4 + 5 && m_Position.y >= y3 - 5 && m_Position.y <= y4 + 5)
 		{
 			m_PlayerPos[0] = m_PlayerPos[4];
 			m_Square = true;
 		}
-		else if (disk < 10 && m_Position.x >= x5 - 10 && m_Position.x <= x6 + 10 && m_Position.y >= y5 - 10 && m_Position.y <= y6 + 10)
+		else if (disk < 5 && m_Position.x >= x5 - 5 && m_Position.x <= x6 + 5 && m_Position.y >= y5 - 5 && m_Position.y <= y6 + 5)
 		{
 			m_PlayerPos[0] = m_PlayerPos[4];
 			m_Square = true;
 		}
-		else if (didr < 10 && m_Position.x >= x7 - 10 && m_Position.x <= x8 + 10 && m_Position.y >= y7 - 10 && m_Position.y <= y8 + 10)
+		else if (didr < 5 && m_Position.x >= x7 - 5 && m_Position.x <= x8 + 5 && m_Position.y >= y7 - 5 && m_Position.y <= y8 + 5)
 		{
 			m_PlayerPos[0] = m_PlayerPos[4];
 			m_Square = true;
@@ -240,25 +220,9 @@ void Player::Update(float deltatime, float time)
 		{
 			m_Square = false;
 		}
-		
-		
 	}
-
 	Line();
-	MakeLine();
-
-	if (INPUT->GetKey('P') == KeyState::DOWN)
-		m_Square = false;
-
-	//if (i >= 5)
-	//{
-	//	//m_Length = 1;
-	//	i = 0;
-	//}
-
-
 }
-
 void Player::Line()
 {
 	a = m_PlayerPos[0].y - m_PlayerPos[1].y;
@@ -280,18 +244,7 @@ void Player::Line()
 	l = m_PlayerPos[4].x - m_PlayerPos[3].x;
 	m = m_PlayerPos[3].x * m_PlayerPos[4].y - m_PlayerPos[4].x * m_PlayerPos[3].y;
 	didr = (float)std::abs(k * m_Position.x + l * m_Position.y + m) / (float)std::sqrt(k * k + l * l);
-
-
-
-
-
-	//printf("%d %d \n", m_Length, i);
 }
-
-void Player::MakeLine()
-{
-}
-
 void Player::Render()
 {
 	m_Player->Render();
@@ -299,17 +252,6 @@ void Player::Render()
 
 	if (m_Square == true)
 	{
-		//Renderer::GetInst()->GetSprite()->End();
-		//Renderer::GetInst()->GetDevice()->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE);
-		//Vertex  v[4] = {
-		//	{m_PlayerPos[0].x, m_PlayerPos[0].y, 1, 1, D3DCOLOR_ARGB(255,255,255,255)}, //��
-		//	{m_PlayerPos[1].x, m_PlayerPos[1].y, 1, 1, D3DCOLOR_ARGB(255,0,0,0)},		//匐
-		//	{m_PlayerPos[3].x, m_PlayerPos[3].y, 1, 1, D3DCOLOR_ARGB(255,0,255,0)},		//蟾
-		//	{m_PlayerPos[2].x, m_PlayerPos[2].y, 1, 1, D3DCOLOR_ARGB(255,255,0,0)},		//說
-		//};
-		//Renderer::GetInst()->GetDevice()->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, v, sizeof(Vertex));
-		//Renderer::GetInst()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
-	
 		float posx = (m_PlayerPos[0].x + m_PlayerPos[2].x) / 2;
 		float posy = (m_PlayerPos[0].y + m_PlayerPos[2].y) / 2;
 		float scalex = (m_PlayerPos[2].x - m_PlayerPos[0].x) / 10;
@@ -319,11 +261,7 @@ void Player::Render()
 		i = 0;
 		m_Length = 1;
 		m_Square = false;
-
 	}
-
-	//if (m_Square)
-	//{
 
 }
 

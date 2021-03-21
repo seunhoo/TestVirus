@@ -48,7 +48,7 @@ public:
 
 	void Update(float deltatime, float time);
 	void Line();
-	void MakeLine();
+
 	void Render();
 	void OnCollision(Object* obj, std::string tag);
 };

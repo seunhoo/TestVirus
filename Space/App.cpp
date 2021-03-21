@@ -20,7 +20,7 @@ bool App::Init(int width, int height, bool windowMode)
 
 void App::Run()
 {
-	srand(time(NULL));
+	srand(time(NULL));                            
 	MSG msg;
 	ZeroMemory(&msg, sizeof(MSG));
 
