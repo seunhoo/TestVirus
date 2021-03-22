@@ -99,10 +99,10 @@
     <ClCompile Include="Regeneration.cpp">
       <Filter>Game\Object\NewFilter2</Filter>
     </ClCompile>
-    <ClCompile Include="LineMgr.cpp">
+    <ClCompile Include="Square.cpp">
       <Filter>Game\Object\NewFilter1</Filter>
     </ClCompile>
-    <ClCompile Include="Square.cpp">
+    <ClCompile Include="LineMgr.cpp">
       <Filter>Game\Object\NewFilter1</Filter>
     </ClCompile>
   </ItemGroup>
@@ -173,10 +173,10 @@
     <ClInclude Include="Regeneration.h">
       <Filter>Game\Object\NewFilter2</Filter>
     </ClInclude>
-    <ClInclude Include="LineMgr.h">
+    <ClInclude Include="Square.h">
       <Filter>Game\Object\NewFilter1</Filter>
     </ClInclude>
-    <ClInclude Include="Square.h">
+    <ClInclude Include="LineMgr.h">
       <Filter>Game\Object\NewFilter1</Filter>
     </ClInclude>
   </ItemGroup>

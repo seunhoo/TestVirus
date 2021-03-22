@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Square.h"
-
+#include"Player.h"
 Square::Square(Vec2 pos, Vec2 scale)
 {
 	m_pScale = scale;
@@ -19,10 +19,22 @@ Square::Square(Vec2 pos, Vec2 scale)
 
 void Square::Update(float deltatime, float time)
 {
+	ObjMgr->CollisionCheak(this, "Player");
+	
+
+
 }
 
 void Square::Render()
 {
 	m_Square->Render();
 
+}
+
+void Square::OnCollision(Object* obj, std::string tag)
+{
+	if (tag == "Player")
+	{
+		
+	}
 }
