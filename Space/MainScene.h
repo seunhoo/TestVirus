@@ -5,6 +5,10 @@ public:
 
 	Sprite* m_BackGround;
 
+	float m_Timer;
+
+	TextMgr* m_Text;
+
 	MainScene();
 	~MainScene();
 
