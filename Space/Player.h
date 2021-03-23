@@ -29,6 +29,9 @@ public:
 
 	float a, b, c,d,e,f,g,h,j,k,l,m, dist,disk,disc, didr;
 
+	int x1, x2, x3, x4, x5, x6, x7, x8;
+	int y1, y2, y3, y4, y5, y6, y7, y8;
+
 	bool m_Right;
 	bool m_Left;
 	bool m_Up;

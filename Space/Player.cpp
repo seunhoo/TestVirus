@@ -168,53 +168,54 @@ void Player::Update(float deltatime, float time)
 
 	}
 	if (i >= 4 && m_Length >= 5 && (
-		(dist == 0 && disk == 0) ||
-		(dist == 0 && disc == 0) ||
-		(dist == 0 && didr == 0) ||
-		(disc == 0 && didr == 0) ||
-		(disc == 0 && disk == 0) ||
-		(disk == 0 && didr == 0)))
+		//(dist == 0 && disk == 0) ||
+		//(dist == 0 && disc == 0) ||
+		(dist == 0 && didr == 0) 
+		//(disc == 0 && didr == 0) ||
+		//(disc == 0 && disk == 0) ||
+		//(disk == 0 && didr == 0)
+		))
 	{
-		int x1 = m_PlayerPos[0].x < m_PlayerPos[1].x ? m_PlayerPos[0].x : m_PlayerPos[1].x;
-		int y1 = m_PlayerPos[0].y < m_PlayerPos[1].y ? m_PlayerPos[0].y : m_PlayerPos[1].y;
-		int x2 = m_PlayerPos[0].x > m_PlayerPos[1].x ? m_PlayerPos[0].x : m_PlayerPos[1].x;
-		int y2 = m_PlayerPos[0].y > m_PlayerPos[1].y ? m_PlayerPos[0].y : m_PlayerPos[1].y;
+		x1 = m_PlayerPos[0].x < m_PlayerPos[1].x ? m_PlayerPos[0].x : m_PlayerPos[1].x;
+		y1 = m_PlayerPos[0].y < m_PlayerPos[1].y ? m_PlayerPos[0].y : m_PlayerPos[1].y;
+		x2 = m_PlayerPos[0].x > m_PlayerPos[1].x ? m_PlayerPos[0].x : m_PlayerPos[1].x;
+		y2 = m_PlayerPos[0].y > m_PlayerPos[1].y ? m_PlayerPos[0].y : m_PlayerPos[1].y;
+		
+		//x3 = m_PlayerPos[1].x < m_PlayerPos[2].x ? m_PlayerPos[1].x : m_PlayerPos[2].x;
+		//y3 = m_PlayerPos[1].y < m_PlayerPos[2].y ? m_PlayerPos[1].y : m_PlayerPos[2].y;
+		//x4 = m_PlayerPos[1].x > m_PlayerPos[2].x ? m_PlayerPos[1].x : m_PlayerPos[2].x;
+		//y4 = m_PlayerPos[1].y > m_PlayerPos[2].y ? m_PlayerPos[1].y : m_PlayerPos[2].y;
 
-		int x3 = m_PlayerPos[1].x < m_PlayerPos[2].x ? m_PlayerPos[1].x : m_PlayerPos[2].x;
-		int y3 = m_PlayerPos[1].y < m_PlayerPos[2].y ? m_PlayerPos[1].y : m_PlayerPos[2].y;
-		int x4 = m_PlayerPos[1].x > m_PlayerPos[2].x ? m_PlayerPos[1].x : m_PlayerPos[2].x;
-		int y4 = m_PlayerPos[1].y > m_PlayerPos[2].y ? m_PlayerPos[1].y : m_PlayerPos[2].y;
+		//x5 = m_PlayerPos[2].x < m_PlayerPos[3].x ? m_PlayerPos[2].x : m_PlayerPos[3].x;
+		//y5 = m_PlayerPos[2].y < m_PlayerPos[3].y ? m_PlayerPos[2].y : m_PlayerPos[3].y;
+		//x6 = m_PlayerPos[2].x > m_PlayerPos[3].x ? m_PlayerPos[2].x : m_PlayerPos[3].x;
+		//y6 = m_PlayerPos[2].y > m_PlayerPos[3].y ? m_PlayerPos[2].y : m_PlayerPos[3].y;
 
-		int x5 = m_PlayerPos[2].x < m_PlayerPos[3].x ? m_PlayerPos[2].x : m_PlayerPos[3].x;
-		int y5 = m_PlayerPos[2].y < m_PlayerPos[3].y ? m_PlayerPos[2].y : m_PlayerPos[3].y;
-		int x6 = m_PlayerPos[2].x > m_PlayerPos[3].x ? m_PlayerPos[2].x : m_PlayerPos[3].x;
-		int y6 = m_PlayerPos[2].y > m_PlayerPos[3].y ? m_PlayerPos[2].y : m_PlayerPos[3].y;
+		//x7 = m_PlayerPos[3].x < m_PlayerPos[4].x ? m_PlayerPos[3].x : m_PlayerPos[4].x;
+		//y7 = m_PlayerPos[3].y < m_PlayerPos[4].y ? m_PlayerPos[3].y : m_PlayerPos[4].y;
+		//x8 = m_PlayerPos[3].x > m_PlayerPos[4].x ? m_PlayerPos[3].x : m_PlayerPos[4].x;
+		//y8 = m_PlayerPos[3].y > m_PlayerPos[4].y ? m_PlayerPos[3].y : m_PlayerPos[4].y;
 
-		int x7 = m_PlayerPos[3].x < m_PlayerPos[4].x ? m_PlayerPos[3].x : m_PlayerPos[4].x;
-		int y7 = m_PlayerPos[3].y < m_PlayerPos[4].y ? m_PlayerPos[3].y : m_PlayerPos[4].y;
-		int x8 = m_PlayerPos[3].x > m_PlayerPos[4].x ? m_PlayerPos[3].x : m_PlayerPos[4].x;
-		int y8 = m_PlayerPos[3].y > m_PlayerPos[4].y ? m_PlayerPos[3].y : m_PlayerPos[4].y;
-
-		if (dist < 10 && m_Position.x > x1 - 10 && m_Position.x < x2 + 10 && m_Position.y > y1 - 10 && m_Position.y < y2 + 9)
+		if (dist < 10 && m_Position.x >= x1 - 10 && m_Position.x <= x2 + 10 && m_Position.y >= y1 - 10 && m_Position.y <= y2 + 10)
 		{
 			m_PlayerPos[0] = m_PlayerPos[4];
 			m_Square = true;
 		}
-		else if (disc < 10 && m_Position.x > x3 - 10 && m_Position.x < x4 + 10 && m_Position.y > y3 - 10 && m_Position.y < y4 + 9)
-		{
-			m_PlayerPos[0] = m_PlayerPos[4];
-			m_Square = true;
-		}
-		else if (disk < 10 && m_Position.x > x5 - 10 && m_Position.x < x6 + 10 && m_Position.y > y5 - 10 && m_Position.y < y6 + 9)
-		{
-			m_PlayerPos[0] = m_PlayerPos[4];
-			m_Square = true;
-		}
-		else if (didr < 10 && m_Position.x > x7 - 10 && m_Position.x < x8 + 10 && m_Position.y > y7 - 10 && m_Position.y < y8 + 9)
-		{
-			m_PlayerPos[0] = m_PlayerPos[4];
-			m_Square = true;
-		}
+		//else if (disc < 10 && m_Position.x >= x3 - 10 && m_Position.x <= x4 + 10 && m_Position.y >= y3 - 10 && m_Position.y <= y4 + 10)
+		//{
+		//	m_PlayerPos[0] = m_PlayerPos[4];
+		//	m_Square = true;
+		//}
+		//else if (disk < 10 && m_Position.x >= x5 - 10 && m_Position.x <= x6 + 10 && m_Position.y >= y5 - 10 && m_Position.y <= y6 + 10)
+		//{
+		//	m_PlayerPos[0] = m_PlayerPos[4];
+		//	m_Square = true;
+		//}
+		//else if (didr < 10 && m_Position.x >= x7 - 10 && m_Position.x <= x8 + 10 && m_Position.y >= y7 - 10 && m_Position.y <= y8 + 10)
+		//{
+		//	m_PlayerPos[0] = m_PlayerPos[4];
+		//	m_Square = true;
+		//}
 		else
 		{
 			m_Square = false;
@@ -229,15 +230,15 @@ void Player::Line()
 	c = m_PlayerPos[0].x * m_PlayerPos[1].y - m_PlayerPos[1].x * m_PlayerPos[0].y;
 	dist = (float)std::abs(a * m_Position.x + b * m_Position.y + c) / (float)std::sqrt(a * a + b * b);
 
-	d = m_PlayerPos[1].y - m_PlayerPos[2].y;
-	e = m_PlayerPos[2].x - m_PlayerPos[1].x;
-	f = m_PlayerPos[1].x * m_PlayerPos[2].y - m_PlayerPos[2].x * m_PlayerPos[1].y;
-	disk = (float)std::abs(d * m_Position.x + e * m_Position.y + f) / (float)std::sqrt(d * d+ e * e);
+	//d = m_PlayerPos[1].y - m_PlayerPos[2].y;
+	//e = m_PlayerPos[2].x - m_PlayerPos[1].x;
+	//f = m_PlayerPos[1].x * m_PlayerPos[2].y - m_PlayerPos[2].x * m_PlayerPos[1].y;
+	//disk = (float)std::abs(d * m_Position.x + e * m_Position.y + f) / (float)std::sqrt(d * d+ e * e);
 
-	g = m_PlayerPos[2].y - m_PlayerPos[3].y;
-	h = m_PlayerPos[3].x - m_PlayerPos[2].x;
-	j = m_PlayerPos[2].x * m_PlayerPos[3].y - m_PlayerPos[3].x * m_PlayerPos[2].y;
-	disc = (float)std::abs(g * m_Position.x + h * m_Position.y + j) / (float)std::sqrt(g * g + h * h);
+	//g = m_PlayerPos[2].y - m_PlayerPos[3].y;
+	//h = m_PlayerPos[3].x - m_PlayerPos[2].x;
+	//j = m_PlayerPos[2].x * m_PlayerPos[3].y - m_PlayerPos[3].x * m_PlayerPos[2].y;
+	//disc = (float)std::abs(g * m_Position.x + h * m_Position.y + j) / (float)std::sqrt(g * g + h * h);
 
 	k = m_PlayerPos[3].y - m_PlayerPos[4].y;
 	l = m_PlayerPos[4].x - m_PlayerPos[3].x;
@@ -255,10 +256,12 @@ void Player::Render()
 		float posy = (m_PlayerPos[0].y + m_PlayerPos[2].y) / 2;
 		float scalex = (m_PlayerPos[2].x - m_PlayerPos[0].x) / 10;
 		float scaley = (m_PlayerPos[2].y - m_PlayerPos[0].y) / 10;
-		ObjMgr->AddObject(new Square(Vec2(posx,posy),Vec2(scalex,scaley)), "Square");
 
-		i = 0;
-		m_Length = 1;
+		ObjMgr->AddObject(new Square(Vec2(posx,posy),Vec2(std::abs(scalex),std::abs(scaley))), "Square"); 
+
+		i = 1;
+		m_Length = 2;
+
 		m_Square = false;
 	}
 
@@ -268,6 +271,6 @@ void Player::OnCollision(Object* obj, std::string tag)
 {
 	if (tag == "Square")
 	{
-
+		printf("Collide");
 	}
 }

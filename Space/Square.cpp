@@ -10,9 +10,11 @@ Square::Square(Vec2 pos, Vec2 scale)
 	SetPosition(pos);
 	SetScale(scale.x ,scale.y);
 
+
+
 	float m_cScale = (std::abs(m_pScale.x) * std::abs(m_pScale.y));
 	float m_pPercent = (std::abs(m_cScale) / (1920 * 1080)) * 100;
-	printf("%f %f \n", m_pScale.x, m_pScale.y);
+	printf("tnrpzldf %f %f \n", m_pScale.x, m_pScale.y);
 	printf("%f \n", m_cScale);
 	printf("%f \n",m_pPercent );
 }
@@ -27,7 +29,10 @@ void Square::Update(float deltatime, float time)
 
 void Square::Render()
 {
+	
+
 	m_Square->Render();
+
 
 }
 
@@ -35,6 +40,6 @@ void Square::OnCollision(Object* obj, std::string tag)
 {
 	if (tag == "Player")
 	{
-		
+		printf("123");
 	}
 }
