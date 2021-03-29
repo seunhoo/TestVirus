@@ -28,6 +28,7 @@
     <ClCompile Include="LineMgr.cpp" />
     <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="MakeSquare.cpp" />
+    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectMgr.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -56,6 +57,7 @@
     <ClInclude Include="LineMgr.h" />
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="MakeSquare.h" />
+    <ClInclude Include="Monster.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectMgr.h" />
     <ClInclude Include="Player.h" />

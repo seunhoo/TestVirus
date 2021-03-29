@@ -1,4 +1,5 @@
 #pragma once
+class Square;
 class MainScene : public Scene
 {
 public:
@@ -8,6 +9,9 @@ public:
 	float m_Timer;
 
 	TextMgr* m_Text;
+
+	Square* m_Square;
+
 
 	MainScene();
 	~MainScene();

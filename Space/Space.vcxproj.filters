@@ -103,7 +103,10 @@
       <Filter>Game\Object\NewFilter1</Filter>
     </ClCompile>
     <ClCompile Include="LineMgr.cpp">
-      <Filter>Game\Object\NewFilter1</Filter>
+      <Filter>Game\Mgrs</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Game\Object\NewFilter2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -177,7 +180,10 @@
       <Filter>Game\Object\NewFilter1</Filter>
     </ClInclude>
     <ClInclude Include="LineMgr.h">
-      <Filter>Game\Object\NewFilter1</Filter>
+      <Filter>Game\Mgrs</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Game\Object\NewFilter2</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

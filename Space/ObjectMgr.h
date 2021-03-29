@@ -19,14 +19,17 @@ public:
 	};
 
 public:
-
+	float m_Cure;
 	void Release();
 	void DeleteCheak();
 	void Update(float deltaTime, float time);
 	void Render();
+	float GetCure() { return m_Cure; }
+	void AddCure(float cure) { m_Cure += cure; }
+	void ReSetCure() { m_Cure = 0; }
 
 
-
+	RECT rc;
 
 public:
 	void AddObject(Object* obj, const std::string tag);

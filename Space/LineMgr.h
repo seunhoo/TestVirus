@@ -1,20 +1,16 @@
 #pragma once
-class LineMgr : public Singleton<LineMgr>
+class LineMgr
 {
-    LPD3DXLINE m_pLine;
-    D3DXCOLOR m_Color;
-    D3DXMATRIX m_Mat;
 public:
-    LineMgr();
-    ~LineMgr();
+	LPD3DXLINE m_pLine;
+	Matrix m_wMat;
+	D3DXCOLOR m_Color;
 
+public:
 
-    LPD3DXLINE GetLine()
-    {
-        return m_pLine;
-    }
+	void Init(float width, bool an);
+	void DrawLine(Vec2* vec, int size);
 
-    void Init(float width, bool antialias);
-    void DrawLine(Vec2* vec, int size);
-    void SetColor(D3DXCOLOR color);
+	void SetColor(D3DXCOLOR m_Color);
+
 };

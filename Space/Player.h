@@ -24,6 +24,7 @@ public:
 	MoveState m_State;
 	LineMgr* m_Line;
 	Sprite* m_Player;
+	TextMgr* m_Text;
 
 	float m_LineCount;
 
@@ -32,12 +33,16 @@ public:
 	int x1, x2, x3, x4, x5, x6, x7, x8;
 	int y1, y2, y3, y4, y5, y6, y7, y8;
 
+	int m_PlayerHp;
+
 	bool m_Right;
 	bool m_Left;
 	bool m_Up;
 	bool m_Down;
 
 	bool m_Square;
+	bool m_CollideSquare;
+	
 
 	int i;
 	int m_Length;

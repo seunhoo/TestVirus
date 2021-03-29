@@ -1,5 +1,5 @@
 #pragma once
-class TextMgr
+class TextMgr : public Object
 {
 private:
 	D3DXCOLOR m_Color;
@@ -16,6 +16,6 @@ public:
 
 	void SetColor(int a, int r, int g, int b);
 
-	void Release();
+
 };
 

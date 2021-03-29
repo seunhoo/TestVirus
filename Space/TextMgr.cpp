@@ -11,6 +11,7 @@ TextMgr::TextMgr()
 	m_FontRect.bottom = 1080;
 
 	m_pFont = NULL;
+	m_Layer = 101;
 }
 
 bool TextMgr::Init(int height, const std::string& fontname)
@@ -38,7 +39,7 @@ bool TextMgr::Init(int height, const std::string& fontname)
 	if (FAILED(hr))
 		return false;
 
-	D3DXMatrixTransformation2D(&m_wMat, NULL, 0.0f, NULL, NULL, 0.0f, NULL);
+	D3DXMatrixTransformation2D(&m_wMat, 0, 0.0f, 0, 0, 0.0f, 0);
 
 	return true;
 }
@@ -60,13 +61,4 @@ int TextMgr::print(const std::string& str, int x, int y)
 void TextMgr::SetColor(int a, int r, int g, int b)
 {
 	m_Color = D3DCOLOR_ARGB(a, r, g, b);
-}
-
-void TextMgr::Release()
-{
-	if (m_pFont != nullptr)
-	{
-		m_pFont->Release();
-		m_pFont = nullptr;
-	}
 }

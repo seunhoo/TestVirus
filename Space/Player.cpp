@@ -8,6 +8,7 @@ Player::Player()
 	: m_State(MoveState::NONE)
 	,m_Length(0)
 	,i(0)
+	,m_PlayerHp(5)
 {
 	srand(time(NULL));
 	m_Player = Sprite::Create(L"Painting/Player.png");
@@ -18,8 +19,8 @@ Player::Player()
 
 	if (randomx == 1)
 	{
-		randomX = rand() % 1920 + 0;
-		randomY = 0;
+		randomX = rand() % 1850 + 70;
+		randomY = 70;
 
 		if (randomX % 10 != 0)
 		{
@@ -31,8 +32,8 @@ Player::Player()
 	}
 	else if(randomx == 2)
 	{
-		randomX = rand() % 1920 + 0;
-		randomY = 1080;
+		randomX = rand() % 1850 + 70;
+		randomY = 1010;
 
 		if (randomX % 10 != 0)
 		{
@@ -44,8 +45,8 @@ Player::Player()
 	}
 	if (randomy == 1)
 	{
-		randomX = 0;
-		randomY = rand() % 1080 + 0;
+		randomX = 70;
+		randomY = rand() % 1020 + 70;
 
 		if (randomY % 10 != 0)
 		{
@@ -57,8 +58,8 @@ Player::Player()
 	}
 	else if(randomy == 2)
 	{
-		randomX = 1920;
-		randomY = rand() % 1080 + 0;
+		randomX = 1850;
+		randomY = rand() % 1020 + 70;
 
 		if (randomY % 10 != 0)
 		{
@@ -73,11 +74,16 @@ Player::Player()
 	printf("%d %d %d %d \n", randomx, randomy, randomX, randomY);
 	m_Layer = 100;
 
-	SetPosition(1920/2, 1080/2);
+	SetPosition(randomX, randomY);
 
 	m_Line = new LineMgr();
 	m_Line->Init(3, 1);
 	m_Line->SetColor(D3DCOLOR_ARGB(255, 255, 0, 0));
+
+	m_Text = new TextMgr();
+	m_Text->Init(45, "±¼¸²Ã¼");
+	m_Text->SetColor(255,255,0,0);
+
 	memset(m_PlayerPos, 0, sizeof(m_PlayerPos));
 	m_PlayerPos[0].x =randomX;
 	m_PlayerPos[0].y =randomY;
@@ -100,9 +106,11 @@ void Player::Update(float deltatime, float time)
 			m_Length++;
 			m_Move = 1;
 			m_State = MoveState::UP;
+			printf("U i%d \n", i);
+			printf("U Length i%d \n", m_Length);
 			i++;
 		}
-		if (m_Position.y >= 10)
+		if (m_Position.y >= 80)
 		{
 			m_Position.y -= 10;
 
@@ -119,10 +127,12 @@ void Player::Update(float deltatime, float time)
 			m_Move = 2;
 
 			m_State = MoveState::DOWN;
+			printf("D i%d \n", i);
+			printf("D Length i%d \n", m_Length);
 			i++;
 		}
 
-		if (m_Position.y <= 1070)
+		if (m_Position.y <= 1000)
 		{
 			m_Position.y += 10;
 
@@ -139,9 +149,11 @@ void Player::Update(float deltatime, float time)
 			m_Move = 3;
 
 			m_State = MoveState::LEFT;
+			printf("L i%d \n", i);
+			printf("L Length i%d \n", m_Length);
 			i++;
 		}
-		if (m_Position.x >= 9)
+		if (m_Position.x >= 80)
 		{
 			m_Position.x -= 10;
 
@@ -158,9 +170,11 @@ void Player::Update(float deltatime, float time)
 			m_Move = 4;
 
 			m_State = MoveState::RIGHT;
+			printf("R i%d \n", i);
+			printf("R Length i%d \n", m_Length);
 			i++;
 		}
-		if (m_Position.x <= 1910)
+		if (m_Position.x <= 1840)
 		{
 			m_Position.x += 10;
 
@@ -221,6 +235,93 @@ void Player::Update(float deltatime, float time)
 			m_Square = false;
 		}
 	}
+
+	if (m_Square == true)
+	{
+
+		printf("Q 0 %f %f \n", m_PlayerPos[0].x, m_PlayerPos[0].y);
+		printf("Q 1 %f %f \n", m_PlayerPos[1].x, m_PlayerPos[1].y);
+		printf("Q 2 %f %f \n", m_PlayerPos[2].x, m_PlayerPos[2].y);
+		printf("Q 3 %f %f \n", m_PlayerPos[3].x, m_PlayerPos[3].y);
+		printf("Q 4 %f %f \n", m_PlayerPos[4].x, m_PlayerPos[4].y);
+
+		
+		if (m_CollideSquare == true)
+		{
+			
+				if (m_PlayerPos[0] == m_PlayerPos[1])
+				{
+					float posx = (m_PlayerPos[0].x + m_PlayerPos[3].x) / 2;
+					float posy = (m_PlayerPos[0].y + m_PlayerPos[3].y) / 2;
+
+					float scalex = std::abs((m_PlayerPos[3].x - m_PlayerPos[0].x)) / 10;
+					float scaley = std::abs((m_PlayerPos[3].y - m_PlayerPos[0].y)) / 10;
+
+
+					ObjMgr->AddObject(new Square(Vec2(posx, posy), Vec2(std::abs(scalex), std::abs(scaley))), "Square");
+
+				}
+				else
+				{
+					float posx = (m_PlayerPos[0].x + m_PlayerPos[2].x) / 2;
+					float posy = (m_PlayerPos[0].y + m_PlayerPos[2].y) / 2;
+
+
+					float scalex = std::abs((m_PlayerPos[2].x - m_PlayerPos[0].x)) / 10;
+					float scaley = std::abs((m_PlayerPos[2].y - m_PlayerPos[0].y)) / 10;
+
+
+					ObjMgr->AddObject(new Square(Vec2(posx, posy), Vec2(std::abs(scalex), std::abs(scaley))), "Square");
+
+				}
+
+			i = 1;
+			m_Length = 2;
+			m_PlayerPos[0] = m_Position;
+			m_CollideSquare = false;
+		}
+		else
+		{
+			float posx = (m_PlayerPos[0].x + m_PlayerPos[2].x) / 2;
+			float posy = (m_PlayerPos[0].y + m_PlayerPos[2].y) / 2;
+			float scalex = std::abs((m_PlayerPos[2].x - m_PlayerPos[0].x)) / 10;
+			float scaley = std::abs((m_PlayerPos[2].y - m_PlayerPos[0].y)) / 10;
+
+
+			ObjMgr->AddObject(new Square(Vec2(posx, posy), Vec2(std::abs(scalex), std::abs(scaley))), "Square");
+
+			i = 1;
+			m_Length = 2;
+			m_PlayerPos[1] = m_Position;
+		}
+		m_Square = false;
+	}
+	//if (m_CollideSquare == true)
+	//{
+	//	if (m_PlayerPos[3].x > m_PlayerPos[2].x)
+	//	{
+	//		m_PlayerPos[2].x = m_PlayerPos[3].x;
+	//	}
+	//	else if (m_PlayerPos[0].y < m_PlayerPos[3].y)
+	//	{
+	//		m_PlayerPos[0].y = m_PlayerPos[3].y;
+	//	}
+	//	else if (m_PlayerPos[0].x > m_PlayerPos[3].x)
+	//	{
+	//		m_PlayerPos[0].x = m_PlayerPos[3].x;
+	//	}
+	//	float posx = (m_PlayerPos[0].x + m_PlayerPos[2].x) / 2;
+	//	float posy = (m_PlayerPos[0].y + m_PlayerPos[2].y) / 2;
+	//	float scalex = (m_PlayerPos[2].x - m_PlayerPos[0].x) / 10;
+	//	float scaley = (m_PlayerPos[2].y - m_PlayerPos[0].y) / 10;
+
+	//	ObjMgr->AddObject(new Square(Vec2(posx, posy), Vec2(std::abs(scalex), std::abs(scaley))), "Square");
+	//	printf("Box i%d \n", i);
+	//	i = 1;
+	//	m_Length = 2;
+	//	m_PlayerPos[0] = m_Position;
+	//	m_CollideSquare = false;
+	//}
 	Line();
 }
 void Player::Line()
@@ -244,26 +345,17 @@ void Player::Line()
 	l = m_PlayerPos[4].x - m_PlayerPos[3].x;
 	m = m_PlayerPos[3].x * m_PlayerPos[4].y - m_PlayerPos[4].x * m_PlayerPos[3].y;
 	didr = (float)std::abs(k * m_Position.x + l * m_Position.y + m) / (float)std::sqrt(k * k + l * l);
+
+
 }
 void Player::Render()
 {
 	m_Player->Render();
 	m_Line->DrawLine(m_PlayerPos, m_Length);
 
-	if (m_Square == true)
-	{
-		float posx = (m_PlayerPos[0].x + m_PlayerPos[2].x) / 2;
-		float posy = (m_PlayerPos[0].y + m_PlayerPos[2].y) / 2;
-		float scalex = (m_PlayerPos[2].x - m_PlayerPos[0].x) / 10;
-		float scaley = (m_PlayerPos[2].y - m_PlayerPos[0].y) / 10;
-
-		ObjMgr->AddObject(new Square(Vec2(posx,posy),Vec2(std::abs(scalex),std::abs(scaley))), "Square"); 
-
-		i = 1;
-		m_Length = 2;
-
-		m_Square = false;
-	}
+	Renderer::GetInst()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
+	m_Text->print("Hp : " + std::to_string(m_PlayerHp), 1600, 50);
+	Renderer::GetInst()->GetSprite()->End();
 
 }
 
@@ -271,6 +363,37 @@ void Player::OnCollision(Object* obj, std::string tag)
 {
 	if (tag == "Square")
 	{
-		printf("Collide");
+
+		//if (i >= 3 && m_Length >=4)
+		//{
+		//	//m_PlayerPos[4] = m_Position;
+		//	printf("0 %f %f \n", m_PlayerPos[0].x, m_PlayerPos[0].y);
+		//	printf("1 %f %f \n", m_PlayerPos[1].x, m_PlayerPos[1].y);
+		//	printf("2 %f %f \n", m_PlayerPos[2].x, m_PlayerPos[2].y);
+		//	printf("3 %f %f \n", m_PlayerPos[3].x, m_PlayerPos[3].y);
+		//	printf("4 %f %f \n ____________________ \n", m_PlayerPos[4].x, m_PlayerPos[4].y);
+		//	
+
+		//	m_CollideSquare = true;
+
+		//	//i = 1;
+		//	//m_Length = 0;
+		//	m_State = MoveState::NONE;
+		//}
+
+
+		if (i >= 3 && m_Length >= 4)
+		{
+			printf("C 0 %f %f \n", m_PlayerPos[0].x, m_PlayerPos[0].y);
+			printf("C 1 %f %f \n", m_PlayerPos[1].x, m_PlayerPos[1].y);
+			printf("C 2 %f %f \n", m_PlayerPos[2].x, m_PlayerPos[2].y);
+			printf("C 3 %f %f \n", m_PlayerPos[3].x, m_PlayerPos[3].y);
+			printf("C 4 %f %f \n", m_PlayerPos[4].x, m_PlayerPos[4].y);
+			//m_PlayerPos[0] = m_PlayerPos[4];
+			//m_PlayerPos[4] = m_Position;
+			m_Square = true;
+			m_CollideSquare = true;
+		}
+
 	}
 }
